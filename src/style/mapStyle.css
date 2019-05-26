@@ -1,0 +1,29 @@
+#main {
+    float: left;
+    width:450px;
+    height: 300px;
+}
+
+.map_unit_container {
+    position: relative;
+    display: inline-block;
+}
+
+.map_unit_cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+}
+
+.map_unit_cover_red{
+    background-color: red;
+    opacity: .5;
+}
+
+.map_unit_cover_blue{
+    background-color: blue;
+    opacity: .5;
+}
