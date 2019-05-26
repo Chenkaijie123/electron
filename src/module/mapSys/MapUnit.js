@@ -17,6 +17,9 @@ class MapUnit {
         this.container.appendChild(this.img);
     }
 
+    /**
+     * 获取图片的宽高
+     */
     async getSize(){
         if(!(this.img.width<<0) || !(this.img.height)){
             return new Promise((resolve,reject)=>{

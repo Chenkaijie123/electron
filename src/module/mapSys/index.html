@@ -7,61 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-<style>
-    #main {
-        float: left;
-        width:450px;
-        height: 300px;
-    }
 
-    .container {
-        position: relative;
-        display: inline-block;
-    }
-
-    .coup {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        background-color: red;
-        opacity: .5;
-    }
-</style>
-
+ <link rel="stylesheet" href="E:\electron\gameUtil\src\style\mapStyle.css">
 <body>
-    <div id="main">
-        <!-- <div> -->
-            <div class="container">
-                <div class="coup"></div>
-                <img src="E:\EgretWorkspace\ui\egretUI\resource\assets\clip/00110.png" alt="" onload = "size(this)">
-            </div>
-        <!-- </div> -->
-        <!-- <div> -->
-            <div class="container">
-                <div class="coup"></div>
-                <img src="E:\EgretWorkspace\ui\egretUI\resource\assets\clip/00111.png" alt="" onload = "size(this)">
-            </div>
-        <!-- </div> -->
-        <!-- <div> -->
-            <div class="container">
-                <div class="coup"></div>
-                <img src="E:\EgretWorkspace\ui\egretUI\resource\assets\clip/00112.png" alt="" onload = "size(this)">
-            </div>
-        <!-- </div> -->
-    </div>
+    <span>width</span><input type="text">    
 </body>
 <script>
-    window.onload = function(){
-        let e = document.getElementById("main");
-        console.log(e.getElementsByTagNameNS)
-    }
 
-    function size(e){
-        console.log(e.width)
-        // e.parentElement.style.width = e.width + "px";
-        // e.parentElement.style.height = e.height + "px";
-    }
 </script>
 </html>
