@@ -56,6 +56,10 @@ class MapMgr{
      * @param {number} cHeig 垂直个数
      */
     async setContainerSize(cWid,cHeig){
+        if(cWid == 0 || cHeig == 0){
+            LogMgr.addWarn(SystemType.map,`不允许为0`);
+            return;
+        }
         let len = this.img_ls.length;
         if(cWid * cHeig < len){//预设个数不够
             LogMgr.addWarn(SystemType.map,`需要设置至少${len}个位置,当前${cWid * cHeig}个，已自动适配行数`);
