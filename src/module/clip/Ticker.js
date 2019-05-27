@@ -1,3 +1,4 @@
+const { Dispatch, ENTER_FRAME } = require("../../utils/Dispatch")
 class Ticker {
     constructor() {
         this.fn = [];
@@ -7,6 +8,7 @@ class Ticker {
         this.time = 0;
         this._swap = 1000 / 40;
         this._frameRate = 40;
+        this.start();
     }
 
     set frameRate(v) {
@@ -16,17 +18,20 @@ class Ticker {
     start() {
         let oldTime = this.time;
         this.time = Date.now();
-        if (this.time - oldTime < this._swap) return;
-        let f = this.fn;
-        let c = this.caller;
-        let args = this.args;
-        let fn;
-        let arg;
-        for (let i = 0; fn = f[i]; i++) {
-            arg = args[i] || [];
-            fn.call(c[i], ...arg);
+        if (this.time - oldTime >= this._swap) {
+            let f = this.fn;
+            let c = this.caller;
+            let args = this.args;
+            let fn;
+            let arg;
+            for (let i = 0; fn = f[i]; i++) {
+                arg = args[i] || [];
+                fn.call(c[i], ...arg);
+            }
+            Dispatch.evtDispatch.emit(ENTER_FRAME);
         }
-        this.tickerID = window.requestAnimationFrame(this.start);
+
+        this.tickerID = window.requestAnimationFrame(this.start.bind(this));
     }
 
     stop() {
@@ -42,19 +47,19 @@ class Ticker {
         this.fn.push(fn);
         this.caller.push(caller);
         this.args.push(args);
-        if (!this.tickerID) this.start();
+        // if (!this.tickerID) this.start();
     }
 
     remove(fn, caller) {
         let i = this.getId(fn, caller);
-        if(i < 0) return;
+        if (i < 0) return;
         let fns = this.fn;
         let callers = this.caller;
         let arg = this.args;
-        fns.splice(i,1);
-        callers.splice(i,1);
-        arg && arg.splice(i,1); 
-        if(fns.length <= 0) this.stop();
+        fns.splice(i, 1);
+        callers.splice(i, 1);
+        arg && arg.splice(i, 1);
+        if (fns.length <= 0) this.stop();
     }
 
     getId(fn, caller) {
@@ -62,9 +67,9 @@ class Ticker {
         let callers = this.caller;
         let f;
         let i = 0;
-        for(;f = fns[i];i++){
-            if(fn == f){
-                if(callers[i] == caller){
+        for (; f = fns[i]; i++) {
+            if (fn == f) {
+                if (callers[i] == caller) {
                     return i;
                 }
             }
@@ -73,3 +78,5 @@ class Ticker {
 
     }
 }
+
+module.exports.Ticker = Ticker;
