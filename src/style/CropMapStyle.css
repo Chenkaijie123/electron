@@ -1,0 +1,31 @@
+#container{
+    width: 100%;
+    height: 600px;
+    position: relative;
+}
+#map{
+    width: 80%;
+    height:600px;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+}
+
+#attr{
+    width: 20%;
+    height:400px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#log{
+    width: 20%;
+    height:200px;
+    position: absolute;
+    top: 400px;
+    right: 0;
+}
+
+
